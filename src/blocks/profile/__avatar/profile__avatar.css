@@ -1,0 +1,12 @@
+.profile__avatar {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  
+}
+
+/* .profile__avatar:hover .profile__avatar-button {
+  display: block;
+  background: url(../../../images/pencil.svg) rgba(0, 0, 0, .8) center no-repeat;
+} */
