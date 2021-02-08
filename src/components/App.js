@@ -1,34 +1,15 @@
-import logo from './images/logo.svg';
-import './index.css';
+import React from 'react';
+import '../index.css';
+import Header from './Header.js';
+import Main from './Main';
+import Footer from './Footer.js';
 
 function App() {
   return (
-<div className="page">
-    <header className="header">
-      <img class="header__logo" src={logo} alt='логотип Mesto'></img>
-    </header>
-    
-    <main className="content">
-      <section className="profile">
-        <button className="profile__avatar-button">
-          <img src="./images/avatar.jpeg" alt="аватар" className="profile__avatar"></img>
-        </button>
-        <div className="profile__info">
-          <div className="profile__list">
-            <h1 className="profile__title">Жак Ив Кусто</h1>
-            <button type="button" className="profile__edit-button"></button>
-          </div>
-          <p className="profile__subtitle">Исследователь океана</p>
-        </div>
-        <button type="button" className="profile__add-button"></button>
-      </section>
-
-      <section className="elements"></section>
-    </main>
-
-    <footer className="footer">
-      <p className="footer__title">&copy;&nbsp;2021 Alexey Kuznetsov</p>
-    </footer>
+    <div className="page">
+      <Header />
+      <Main />
+      <Footer />
 
     <div className="popup popup_type_profile">
       <form className="popup__form popup__form_profile" action="#" name="profile" method="GET" novalidate>
