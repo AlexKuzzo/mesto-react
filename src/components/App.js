@@ -4,11 +4,13 @@ import Header from './Header.js';
 import Main from './Main';
 import Footer from './Footer.js';
 import PopupWithForm from './PopupWithForm.js';
+import ImagePopup from './ImagePopup.js';
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState(null);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -22,16 +24,21 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
+  function handleCardClick(props) {
+    setSelectedCard(props)
+  }
+
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
+    setSelectedCard(null);
   }
 
   return (
     <div className="page">
       <Header />
-      <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} />
+      <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onCardClick={handleCardClick} />
       <Footer />
 
     <PopupWithForm name="profile" title="Редактировать профиль" submit="Сохранить" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
@@ -56,13 +63,6 @@ function App() {
         </label>
     </PopupWithForm>
 
-    <div className="popup popup_type_photo">
-      <div className="popup__photo-container">
-        <img className="popup__photo" src="#" alt="тут будет ваша картинка"></img>
-        <p className="popup__photo-name"></p>
-        <button className="popup__close-button popup__close-button_photo" type="button" aria-label="Закрыть"></button>
-      </div>
-    </div>
 
     <PopupWithForm name="delete-card" title="Вы уверены?" submit="Да" isOpen={false} isClose={closeAllPopups}>
         <button className="popup__submit-button popup__submit-button_delete" type="submit">Да</button>
@@ -75,21 +75,7 @@ function App() {
         </label>
     </PopupWithForm>
 
-    <template className="cards-template">
-      <ul className="element">
-        <li className="element__list">
-          <img className="element__image" alt=""></img>
-          <button className="element__delete-button" type="button"></button>
-        </li>
-        <div className="element__item">
-          <h2 className="element__title"></h2>
-          <div className="element__like-container">
-            <button type="button" className="element__like-button"></button>
-            <p className="element__like-score"></p>
-          </div>
-        </div>
-      </ul>
-    </template>
+    <ImagePopup card={selectedCard} onClose={closeAllPopups}></ImagePopup>
 
   </div>
  );
